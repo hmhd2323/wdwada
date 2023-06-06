@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#openButton').click(function() {
+                var message = $('#messageInput').val();
+
+                $.ajax({
+                    url: 'http://localhost:5000/openMsgBox',
+                    type: 'POST',
+                    data: { message: message },
+                    success: function(response) {
+                        console.log('Signal sent to C# program');
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error sending signal to C# program');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="messageInput" placeholder="Enter message">
+    <button id="openButton">OPEN MSG BOX</button>
+</body>
+</html>
